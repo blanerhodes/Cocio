@@ -1,0 +1,2 @@
+IsPlayerAlive
+if player is alive do return true

@@ -1,0 +1,34 @@
+name idea: cocio
+manage it's own internal state or be passed some state to apply rules to
+be able to query internal state
+take a script file to build the actual rules
+take a file with condition names and their possible values or generate the possible values as the script file is processed
+	- be able to toggle the dynamic value generation on/off
+handle condition values being bool, string, int, float
+some sort of linting prepass on the files script and condition files??
+
+user requests for rule to be run, user end shouldnt care about how conditions are handled under the hood, can probably one to one map script file ifs to C code
+
+script file contents:
+	- if statements to turn into rules
+	- if statement bodies to build rule results
+
+
+
+CONDITION VALUES FILE TEMPLATE
+----
+ConditionName
+START
+value1
+value2
+...
+END
+......
+
+SCRIPT FILE TEMPLATE
+RuleName
+condition1
+	condition1 body
+condition2
+	condition2 body
+...etc
