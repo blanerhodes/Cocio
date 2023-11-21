@@ -71,10 +71,19 @@ inline u32 StringCopyToWS(u8* src, u8* dest, b32 include_ws = false) {
 }
 
 inline void StringCopy(u8* src, u8* dest) {
-    while(src && dest) {
-        *src = *dest;
+    while(*src && *dest) {
+        *dest = *src;
         src++;
         dest++;
     }
+}
+
+inline void StringCopy(u8* src, u8* dest, u32 size) {
+    for (; size > 0; size--) {
+        *dest = *src;
+        src++;
+        dest++;
+    }
+
 }
 //TODO: make string compare that takes lengths

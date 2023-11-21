@@ -1,15 +1,30 @@
 enum BoolConditionId {
-	BOOL1
+	GATE_1_OPEN,
+	GATE_2_OPEN,
+	GATE_3_OPEN
 };
 
 enum CharConditionId {
-	CHAR1
+	CHAR1_VALUE,
+	CHAR2_VALUE,
+	CHAR3_VALUE
 };
 
 enum StringConditionId {
-	STRING1
+	STRING1_VALUE,
+	STRING2_VALUE,
+	STRING3_VALUE
 };
 
 enum FloatConditionId {
-	FLOAT1
+	FLOAT1_VALUE,
+	FLOAT2_VALUE,
+	FLOAT3_VALUE
+};
+
+enum RuleId {
+	OPEN_GATE_3,
+	CHANGE_CHAR3,
+	CHANGE_FLOAT3,
+	CHANGE_STRING
 };
