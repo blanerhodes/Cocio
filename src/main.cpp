@@ -5,6 +5,7 @@
 #include "core/dstring.cpp"
 #include "platform_services.cpp"
 #include "condition_tables.cpp"
+#include "scanner.cpp"
 
 //store conditions and their possible values
 //if using internal state build permanent table
@@ -99,6 +100,22 @@ int WINAPI wWinMain(HINSTANCE instance, HINSTANCE prev_instance, PWSTR cmd_line,
 	string_table.AddCondition("string3");
 	rule_table.RunRule(CHANGE_STRING);
 	u8* result = string_table.QueryCondition(STRING3_VALUE);
+
+	Scanner scanner = {};
+	char* test = "test";
+	scanner.Init((u8*)test, 4);
+	i32 line = 01;
+	for (;;) {
+		Token token = scanner.ScanToken();
+		if (token.line != line) {
+			DINFO("%4d", token.line);
+			line = token.line;
+		}
+		else {
+			DINFO("   | ");
+		}
+		DINFO("%2d '%.*s'\n", token.type, token.length, token.start);
+	}
 
 	return 0;
 }

@@ -53,6 +53,7 @@ inline b32 IsWhiteSpace(char c) {
     return (c == ' ') || (c == '\t') || (c == '\v') || (c == '\f') || IsEndOfLine(c);
 }
 
+
 inline u32 StringCopyToWS(u8* src, u8* dest, b32 include_ws = false) {
     u32 num_copied = 0;
     while(*src && dest && !IsWhiteSpace(*src)) {
@@ -85,5 +86,21 @@ inline void StringCopy(u8* src, u8* dest, u32 size) {
         dest++;
     }
 
+}
+
+inline b8 IsDigit(char c) {
+    return '0' <= c && c <= '9';
+}
+
+inline b8 IsAlpha(char c) {
+    return ('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z') || c == '_';
+}
+
+inline b8 IsAlNum(char c) {
+    return IsDigit(c) || IsAlpha(c);
+}
+
+inline void SubStringCopy(u8* src, u8* dest, u32 start, u32 count) {
+    StringCopy(src + start, dest, count);
 }
 //TODO: make string compare that takes lengths
