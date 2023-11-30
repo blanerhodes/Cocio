@@ -85,7 +85,6 @@ inline void StringCopy(u8* src, u8* dest, u32 size) {
         src++;
         dest++;
     }
-
 }
 
 inline b8 IsDigit(char c) {
@@ -102,5 +101,21 @@ inline b8 IsAlNum(char c) {
 
 inline void SubStringCopy(u8* src, u8* dest, u32 start, u32 count) {
     StringCopy(src + start, dest, count);
+}
+
+inline i32 GetLine(u8* src, u8* dest) {
+    i32 bytes_read = 0;
+    while (*src && !IsEndOfLine(*src)) {
+        *dest = *src;
+        src++;
+        dest++;
+        bytes_read++;
+    }
+    return bytes_read;
+}
+
+#include <stdlib.h>
+inline f32 StringToF32(u8* str) {
+    return atof((char*)str);
 }
 //TODO: make string compare that takes lengths

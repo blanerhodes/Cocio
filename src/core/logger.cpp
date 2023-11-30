@@ -76,7 +76,7 @@ i32 StringFormat(char* dest, char* format, ...) {
     return -1;
 }
 
-void LogOutput(LogLevel level, char* message, ...) {
+void LogOutput(LogLevel level, b8 insert_newline, char* message, ...) {
     //TODO: all this stuff has to go on another thread since it's so slow
     const char* level_strings[6] = {"[FATAL]: ", "[ERROR]: ", "[WARN]: ", "[INFO]: ", "[DEBUG]: ", "[TRACE]: "};
     b8 is_error = level < LOG_LEVEL_WARN;
@@ -89,7 +89,11 @@ void LogOutput(LogLevel level, char* message, ...) {
     StringFormatV(out_message, message, arg_ptr);
     va_end(arg_ptr);
 
-    StringFormat(out_message, "%s%s\n", level_strings[level], out_message);
+    if (insert_newline) {
+        StringFormat(out_message, "%s%s\n", level_strings[level], out_message);
+    } else {
+        StringFormat(out_message, "%s", out_message);
+    }
 
     if (is_error) {
         Win32ConsoleWriteError(out_message, level);
@@ -100,5 +104,5 @@ void LogOutput(LogLevel level, char* message, ...) {
 }
 
 void ReportAssertionFailure(char* expression, char* message, char* file, i32 line){
-    LogOutput(LOG_LEVEL_FATAL, "Assertion Failure: %s, message: '%s', in file: %s, line: %d\n", expression, message, file, line);
+    LogOutput(LOG_LEVEL_FATAL, true, "Assertion Failure: %s, message: '%s', in file: %s, line: %d\n", expression, message, file, line);
 }

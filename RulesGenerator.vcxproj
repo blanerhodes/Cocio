@@ -96,7 +96,7 @@
       <ConformanceMode>true</ConformanceMode>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <FloatingPointModel>Fast</FloatingPointModel>
-      <AdditionalOptions>-Wno-writable-strings -Wno-unused-function -Wno-microsoft-include %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-Wno-writable-strings -Wno-unused-function -Wno-microsoft-include -Wno-c++11-narrowing %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -125,11 +125,13 @@
   <ItemGroup>
     <Text Include="features.txt" />
     <Text Include="test_files\conditions.txt" />
-    <Text Include="test_files\test_script.txt" />
+    <Text Include="test_files\test_script.cos" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\chunk.h" />
     <ClInclude Include="src\condition_tables.h" />
     <ClInclude Include="src\platform_services.h" />
+    <ClInclude Include="src\rule_table.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
